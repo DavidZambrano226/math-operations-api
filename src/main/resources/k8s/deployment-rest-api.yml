@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: math-operations-deployment
+  labels:
+    app: math-operations-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: math-operations-api
+  template:
+    metadata:
+      labels:
+        app: math-operations-api
+    spec:
+      containers:
+        - name: math-operations-api
+          image: davidzambrano/rest-api-k8s
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "150Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "1024m"
